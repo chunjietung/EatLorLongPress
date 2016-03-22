@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.ArrayAdapter;
@@ -18,6 +19,8 @@ import java.util.Comparator;
 public class MainActivity extends AppCompatActivity {
     EditText editText;
     Button addButton;
+    Button sortButton;
+    Button hitButton;
     ListView listView;
     ArrayList<String> listItems;
     ArrayAdapter<String> adapter;
@@ -38,21 +41,55 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, listItems);
         listView.setAdapter(adapter);
+
+        editText.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                editText.setCursorVisible(true);
+            }
+        });
+
         addButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                listItems.add(editText.getText().toString());
-                adapter.notifyDataSetChanged();
-                editText.setText("");
+                if (editText.length() == 0)
+                {
+                    new AlertDialog.Builder(context)
+                            .setTitle("No Text")
+                            .setMessage("Required to insert food choice")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                    editText.setCursorVisible(false);
+                }
+
+                else
+                {
+                    listItems.add(editText.getText().toString());
+                    adapter.notifyDataSetChanged();
+                    editText.setText("");
+                    try{
+                        InputMethodManager inputManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+                        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
+                    }
+                    catch (Exception e){
+
+                    }
+                    editText.setCursorVisible(false);
+                }
+
             }
         });
 
         context = this;
 
-        Button sortButton = (Button) findViewById(R.id.sortButton);
+        sortButton = (Button) findViewById(R.id.sortButton);
         assert sortButton != null;
         sortButton.setOnClickListener(sortClickListener);
 
-        Button hitButton = (Button) findViewById(R.id.hitButton);
+        hitButton = (Button) findViewById(R.id.hitButton);
         assert hitButton != null;
         hitButton.setOnClickListener(hitClickListener);
     }
