@@ -50,10 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
         addButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (editText.length() == 0)
-                {
+                if (editText.length() == 0) {
                     new AlertDialog.Builder(context)
-                            .setTitle("No Text")
+                            .setTitle("Invalid Input")
                             .setMessage("Required to insert food choice")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
@@ -63,23 +62,18 @@ public class MainActivity extends AppCompatActivity {
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
                     editText.setCursorVisible(false);
-                }
-
-                else
-                {
+                } else {
                     listItems.add(editText.getText().toString());
                     adapter.notifyDataSetChanged();
                     editText.setText("");
-                    try{
-                        InputMethodManager inputManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-                        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
-                    }
-                    catch (Exception e){
+                    try {
+                        InputMethodManager inputManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                    } catch (Exception e) {
 
                     }
                     editText.setCursorVisible(false);
                 }
-
             }
         });
 
@@ -121,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             if(listItems.size() <= 1) {
                 new AlertDialog.Builder(context)
-                        .setTitle("Insufficient food choice")
+                        .setTitle("Insufficient Food Choice")
                         .setMessage("Required at least 2 food choices to random")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
