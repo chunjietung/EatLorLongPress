@@ -7,6 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context="com.comp210p.eatlor.MainActivity">
 
     <EditText
@@ -16,7 +18,8 @@
         android:hint="@string/hintText"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/addButton" />
+        android:layout_toStartOf="@+id/addButton"
+        android:cursorVisible="false" />
 
     <Button
         android:layout_width="wrap_content"
@@ -24,7 +27,7 @@
         android:text="@string/addButtonText"
         android:id="@+id/addButton"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignEnd="@+id/sortButton" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -32,8 +35,8 @@
         android:id="@+id/foodListView"
         android:layout_toStartOf="@+id/addButton"
         android:layout_below="@+id/addButton"
-        android:layout_alignEnd="@+id/addButton"
-        android:layout_above="@+id/sortButton" />
+        android:layout_above="@+id/sortButton"
+        android:layout_alignEnd="@+id/sortButton" />
 
     <Button
         android:layout_width="fill_parent"
