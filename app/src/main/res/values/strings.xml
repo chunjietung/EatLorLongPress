@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">EatLor!</string>
+    <string name="hintText">Type in the name of food</string>
+    <string name="addButtonText">Add</string>
+    <string name="hitMeText">Hit Me!</string>
+    <string name="sortText">Alphabetical Order</string>
+</resources>
