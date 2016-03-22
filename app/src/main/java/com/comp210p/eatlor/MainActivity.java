@@ -21,9 +21,10 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     ArrayList<String> listItems;
     ArrayAdapter<String> adapter;
+    Context context;
     View view;
     String passResult;
-    Context context;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,11 +84,11 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             if(listItems.size() <= 1) {
                 new AlertDialog.Builder(context)
-                        .setTitle("Additional food choice required")
-                        .setMessage("Insufficient food choice")
+                        .setTitle("Insufficient food choice")
+                        .setMessage("Required at least 2 food choices to random")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
+                                dialog.dismiss();
                             }
                         })
                         .setIcon(android.R.drawable.ic_dialog_alert)
