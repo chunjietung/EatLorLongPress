@@ -19,7 +19,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_toStartOf="@+id/addButton"
-        android:cursorVisible="false" />
+        android:cursorVisible="false"
+        android:singleLine="true" />
 
     <Button
         android:layout_width="wrap_content"
